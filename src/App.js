@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './index.css';
 
 function App() {
   return (
@@ -17,10 +17,10 @@ function App() {
               <img src="<%=require('./images/edit-button_big.svg')%>" alt="" className="profile__avatar-edit-icon"/>
             </button>
             <div className="profile__title">
-              <h1 id="no_id" className="profile__name"></h1>
+              <h1 id="no_id" className="profile__name">Жак-Ив Кусто</h1>
               <button type="button" className="profile__edit-button" aria-label="Редактировать"></button>
             </div>
-            <p className="profile__description"></p>
+            <p className="profile__description">Исследователь океана</p>
           </div>
           <button type="button" className="profile__add-button" aria-label="Добавить"></button>
         </section>
