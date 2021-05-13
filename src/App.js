@@ -1,4 +1,5 @@
-import logo from './logo.svg';
+import logo from './images/logo.svg';
+import avatarEditIcon from './images/edit-button_big.svg';
 import './index.css';
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div className="page">
 
       <header className="header page__section">
-        <img src="<%=require('./images/logo.svg')%>" alt="Логотип" className="header__logo"/>
+        <img src={logo} alt="Логотип" className="header__logo"/>
       </header>
 
       <main id="content">
@@ -14,7 +15,7 @@ function App() {
           <div className="profile__content">
             <img src="#" alt="Аватар профиля" className="profile__avatar"/>
             <button type="button"  className="profile__avatar-edit-button">
-              <img src="<%=require('./images/edit-button_big.svg')%>" alt="" className="profile__avatar-edit-icon"/>
+              <img src={avatarEditIcon} alt="" className="profile__avatar-edit-icon"/>
             </button>
             <div className="profile__title">
               <h1 id="no_id" className="profile__name">Жак-Ив Кусто</h1>
