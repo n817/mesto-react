@@ -11,6 +11,18 @@ function App() {
       <Main />
       <Footer />
 
+      <section className="popup popup_type_avatar-edit" aria-label="Редактирование аватара профиля">
+        <form className="form" name="avatar" novalidate>
+         <button type="button" className="popup__close-button" aria-label="Закрыть попап"></button>
+          <h2 className="form__title">Обновить аватар</h2>
+          <label className="form__field">
+          <input type="url" id="avatar-input" className="form__input form__input-url" name="url" placeholder="Ссылка на картинку с аватаром" required/>
+            <span className="form__input-error avatar-input-error"></span>
+          </label>
+         <button type="submit" className="form__submit-button">Сохранить</button>
+       </form>
+      </section>
+
       <section className="popup popup_type_profile-edit" aria-label="Редактирование профиля">
         <form className="form" name="edit" novalidate>
           <button type="button" className="popup__close-button" aria-label="Закрыть попап"></button>
@@ -25,18 +37,6 @@ function App() {
           </label>
           <button type="submit" className="form__submit-button">Сохранить</button>
         </form>
-      </section>
-
-      <section className="popup popup_type_avatar-edit" aria-label="Редактирование аватара профиля">
-        <form className="form" name="avatar" novalidate>
-         <button type="button" className="popup__close-button" aria-label="Закрыть попап"></button>
-          <h2 className="form__title">Обновить аватар</h2>
-          <label className="form__field">
-          <input type="url" id="avatar-input" className="form__input form__input-url" name="url" placeholder="Ссылка на картинку с аватаром" required/>
-            <span className="form__input-error avatar-input-error"></span>
-          </label>
-         <button type="submit" className="form__submit-button">Сохранить</button>
-       </form>
       </section>
 
       <section className="popup popup_type_card-add" aria-label="Добавление нового места">

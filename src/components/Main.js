@@ -1,21 +1,34 @@
 import avatarEditIcon from '../images/edit-button_big.svg';
 
-function Main() {
+function Main(props) {
+
+  function handleEditAvatarClick(){
+    document.querySelector('.popup_type_avatar-edit').classList.add('popup_opened');
+  }
+
+  function handleEditProfileClick(){
+    document.querySelector('.popup_type_profile-edit').classList.add('popup_opened');
+  }
+
+  function handleAddPlaceClick(){
+    document.querySelector('.popup_type_card-add').classList.add('popup_opened');
+  }
+
   return (
     <main id="content">
         <section className="profile page__section" aria-label="Профиль">
           <div className="profile__content">
             <img src="#" alt="Аватар профиля" className="profile__avatar"/>
-            <button type="button"  className="profile__avatar-edit-button">
+            <button type="button"  className="profile__avatar-edit-button" onClick={handleEditAvatarClick}>
               <img src={avatarEditIcon} alt="" className="profile__avatar-edit-icon"/>
             </button>
             <div className="profile__title">
               <h1 id="no_id" className="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" className="profile__edit-button" aria-label="Редактировать"></button>
+              <button type="button" className="profile__edit-button" aria-label="Редактировать" onClick={handleEditProfileClick}></button>
             </div>
             <p className="profile__description">Исследователь океана</p>
           </div>
-          <button type="button" className="profile__add-button" aria-label="Добавить"></button>
+          <button type="button" className="profile__add-button" aria-label="Добавить" onClick={handleAddPlaceClick}></button>
         </section>
 
         <section className="cards page__section" aria-label="Места">
