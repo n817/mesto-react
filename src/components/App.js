@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -6,16 +7,24 @@ import '../index.css';
 
 function App() {
 
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+
+
   function handleEditAvatarClick(){
-    document.querySelector('.popup_type_avatar-edit').classList.add('popup_opened');
+    setIsEditAvatarPopupOpen(true);
+    //document.querySelector('.popup_type_avatar-edit').classList.add('popup_opened');
   }
 
   function handleEditProfileClick(){
-    document.querySelector('.popup_type_profile-edit').classList.add('popup_opened');
+    setIsEditProfilePopupOpen(true);
+    //document.querySelector('.popup_type_profile-edit').classList.add('popup_opened');
   }
 
   function handleAddPlaceClick(){
-    document.querySelector('.popup_type_card-add').classList.add('popup_opened');
+    setIsAddPlacePopupOpen(true);
+    //document.querySelector('.popup_type_card-add').classList.add('popup_opened');
   }
 
   return (

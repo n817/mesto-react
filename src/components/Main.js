@@ -1,3 +1,4 @@
+import React from 'react';
 import avatarEditIcon from '../images/edit-button_big.svg';
 
 function Main({onEditAvatar, onEditProfile, onAddPlace}) {
