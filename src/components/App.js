@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './Header';
 import Main from './Main';
+import PopupWithForm from './PopupWithForm';
+
 import Footer from './Footer';
 import '../index.css';
 
@@ -14,17 +16,18 @@ function App() {
 
   function handleEditAvatarClick(){
     setIsEditAvatarPopupOpen(true);
-    //document.querySelector('.popup_type_avatar-edit').classList.add('popup_opened');
   }
 
   function handleEditProfileClick(){
     setIsEditProfilePopupOpen(true);
-    //document.querySelector('.popup_type_profile-edit').classList.add('popup_opened');
   }
 
   function handleAddPlaceClick(){
     setIsAddPlacePopupOpen(true);
-    //document.querySelector('.popup_type_card-add').classList.add('popup_opened');
+  }
+
+  function closeAllPopups(props) {
+    props(false);
   }
 
   return (
@@ -35,22 +38,23 @@ function App() {
             onAddPlace = {handleAddPlaceClick}/>
       <Footer />
 
-      <section className="popup popup_type_avatar-edit" aria-label="Редактирование аватара профиля">
-        <form className="form" name="avatar" noValidate>
-         <button type="button" className="popup__close-button" aria-label="Закрыть попап"></button>
-          <h2 className="form__title">Обновить аватар</h2>
+      <PopupWithForm
+        name="avatar-edit"
+        title="Обновить аватар"
+        isOpen={isEditAvatarPopupOpen}
+        onClose={() => closeAllPopups(setIsEditAvatarPopupOpen)}>
           <label className="form__field">
           <input type="url" id="avatar-input" className="form__input form__input-url" name="url" placeholder="Ссылка на картинку с аватаром" required/>
             <span className="form__input-error avatar-input-error"></span>
           </label>
          <button type="submit" className="form__submit-button">Сохранить</button>
-       </form>
-      </section>
+      </PopupWithForm>
 
-      <section className="popup popup_type_profile-edit" aria-label="Редактирование профиля">
-        <form className="form" name="edit" noValidate>
-          <button type="button" className="popup__close-button" aria-label="Закрыть попап"></button>
-          <h2 className="form__title">Редактировать профиль</h2>
+      <PopupWithForm
+        name="profile-edit"
+        title="Редактировать профиль"
+        isOpen={isEditProfilePopupOpen}
+        onClose={() => closeAllPopups(setIsEditProfilePopupOpen)}>
           <label className="form__field">
             <input type="text" id="username-input" className="form__input" name="username" placeholder="Имя" minLength="2" maxLength="40" required/>
             <span className="form__input-error username-input-error"></span>
@@ -60,13 +64,13 @@ function App() {
             <span className="form__input-error description-input-error"></span>
           </label>
           <button type="submit" className="form__submit-button">Сохранить</button>
-        </form>
-      </section>
+      </PopupWithForm>
 
-      <section className="popup popup_type_card-add" aria-label="Добавление нового места">
-        <form className="form" name="add" noValidate>
-          <button type="button" className="popup__close-button" aria-label="Закрыть попап"></button>
-          <h2 className="form__title">Новое место</h2>
+      <PopupWithForm
+        name="card-add"
+        title="Новое место"
+        isOpen={isAddPlacePopupOpen}
+        onClose={() => closeAllPopups(setIsAddPlacePopupOpen)}>
           <label className="form__field">
             <input type="text" id="title-input" className="form__input" name="cardname" placeholder="Название" minLength="1" maxLength="30" required/>
            <span className="form__input-error title-input-error"></span>
@@ -76,8 +80,7 @@ function App() {
             <span className="form__input-error url-input-error"></span>
          </label>
          <button type="submit" className="form__submit-button">Создать</button>
-        </form>
-      </section>
+      </PopupWithForm>
 
       <section className="popup popup_type_zoom" aria-label="Просмотр фотографий">
         <figure className="zoom">
