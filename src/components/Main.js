@@ -1,21 +1,49 @@
 import React from 'react';
+import api from '../utils/api'
 import avatarEditIcon from '../images/edit-button_big.svg';
 
 function Main({onEditAvatar, onEditProfile, onAddPlace}) {
+
+  const [userName, setUserName] = React.useState('Имя');
+  const [userDescription, setUserDescription] = React.useState('Описание');
+  const [userAvatar, setUserAvatar] = React.useState('#');
+
+  React.useEffect(() => {
+    Promise.all([
+      api.getUserInfo(),
+      api.getInitialCards()
+    ])
+      .then((res) => {
+        console.log(res);
+        const [userData, initialCards] = res;
+        // Загружаем на страницу данные пользователя
+        //userId = userData._id;
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+        // Загружаем на страницу карточки
+        //cardsSection.renderItems(initialCards);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    }, []);
+
 
   return (
     <main id="content">
         <section className="profile page__section" aria-label="Профиль">
           <div className="profile__content">
-            <img src="#" alt="Аватар профиля" className="profile__avatar"/>
+            <img src={userAvatar} alt="Аватар профиля" className="profile__avatar"/>
             <button type="button"  className="profile__avatar-edit-button" onClick={onEditAvatar}>
               <img src={avatarEditIcon} alt="" className="profile__avatar-edit-icon"/>
             </button>
             <div className="profile__title">
-              <h1 id="no_id" className="profile__name">Жак-Ив Кусто</h1>
+              <h1 id="no_id" className="profile__name">{userName}</h1>
               <button type="button" className="profile__edit-button" aria-label="Редактировать" onClick={onEditProfile}></button>
             </div>
-            <p className="profile__description">Исследователь океана</p>
+            <p className="profile__description">{userDescription}</p>
           </div>
           <button type="button" className="profile__add-button" aria-label="Добавить" onClick={onAddPlace}></button>
         </section>
