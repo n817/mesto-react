@@ -5,6 +5,7 @@ import PopupWithForm from './PopupWithForm';
 
 import Footer from './Footer';
 import '../index.css';
+import ImagePopup from './ImagePopup';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
 
   function handleEditAvatarClick(){
@@ -26,8 +28,15 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function closeAllPopups(props) {
-    props(false);
+  function handleCardClick(card){
+    setSelectedCard(card);
+  }
+
+  function closeAllPopups() {
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setSelectedCard({});
   }
 
   return (
@@ -35,14 +44,15 @@ function App() {
       <Header />
       <Main onEditAvatar = {handleEditAvatarClick}
             onEditProfile = {handleEditProfileClick}
-            onAddPlace = {handleAddPlaceClick}/>
+            onAddPlace = {handleAddPlaceClick}
+            onCardClick = {handleCardClick}/>
       <Footer />
 
       <PopupWithForm
         name="avatar-edit"
         title="Обновить аватар"
         isOpen={isEditAvatarPopupOpen}
-        onClose={() => closeAllPopups(setIsEditAvatarPopupOpen)}>
+        onClose={closeAllPopups}>
           <label className="form__field">
           <input type="url" id="avatar-input" className="form__input form__input-url" name="url" placeholder="Ссылка на картинку с аватаром" required/>
             <span className="form__input-error avatar-input-error"></span>
@@ -54,7 +64,7 @@ function App() {
         name="profile-edit"
         title="Редактировать профиль"
         isOpen={isEditProfilePopupOpen}
-        onClose={() => closeAllPopups(setIsEditProfilePopupOpen)}>
+        onClose={closeAllPopups}>
           <label className="form__field">
             <input type="text" id="username-input" className="form__input" name="username" placeholder="Имя" minLength="2" maxLength="40" required/>
             <span className="form__input-error username-input-error"></span>
@@ -70,7 +80,7 @@ function App() {
         name="card-add"
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
-        onClose={() => closeAllPopups(setIsAddPlacePopupOpen)}>
+        onClose={closeAllPopups}>
           <label className="form__field">
             <input type="text" id="title-input" className="form__input" name="cardname" placeholder="Название" minLength="1" maxLength="30" required/>
            <span className="form__input-error title-input-error"></span>
@@ -82,13 +92,10 @@ function App() {
          <button type="submit" className="form__submit-button">Создать</button>
       </PopupWithForm>
 
-      <section className="popup popup_type_zoom" aria-label="Просмотр фотографий">
-        <figure className="zoom">
-          <button type="button" className="popup__close-button" aria-label="Закрыть попап"></button>
-          <img src="#" alt="Фотография места" className="zoom__image"/>
-          <figcaption className="zoom__caption">Каньон Святой Анны</figcaption>
-        </figure>
-      </section>
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
 
       <section className="popup popup_type_confirm-delete">
         <form className="form" name="confirm" noValidate>

@@ -1,8 +1,18 @@
 import React from 'react';
 
-function ImagePopup() {
+function ImagePopup({card, onClose}) {
   return (
-    console.log('Пустота да и только')
+    <section className={`
+      popup popup_type_zoom"
+      aria-label="Просмотр фотографий
+      ${card.link ? "popup_opened" : ""}
+      `}>
+      <figure className="zoom">
+        <button type="button" className="popup__close-button" aria-label="Закрыть попап" onClick={onClose}></button>
+        <img src={card.link} alt={card.name} className="zoom__image"/>
+        <figcaption className="zoom__caption">{card.name}</figcaption>
+      </figure>
+    </section>
   );
 }
 

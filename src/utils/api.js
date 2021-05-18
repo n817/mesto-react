@@ -1,3 +1,5 @@
+import { apiSettings } from "./utils";
+
 class Api {
   constructor({cardsUrl, userUrl, headers}) {
     this._cardsUrl = cardsUrl;
@@ -89,14 +91,7 @@ class Api {
 
 
 // Создаем экземпляр класса взаимодействия с API сервера
-const api = new Api({
-  cardsUrl: 'https://mesto.nomoreparties.co/v1/cohort-22/cards',
-  userUrl: 'https://mesto.nomoreparties.co/v1/cohort-22/users/me',
-  headers: {
-    authorization: '515ca80d-3822-4c04-8086-34127dceee10',
-    'Content-Type': 'application/json'
-  }
-});
+const api = new Api(apiSettings);
 
 
 export default api;

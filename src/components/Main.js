@@ -3,7 +3,7 @@ import api from '../utils/api';
 import Card from './Card';
 import avatarEditIcon from '../images/edit-button_big.svg';
 
-function Main({onEditAvatar, onEditProfile, onAddPlace}) {
+function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
 
   const [userName, setUserName] = React.useState('Имя');
   const [userDescription, setUserDescription] = React.useState('Описание');
@@ -53,9 +53,8 @@ function Main({onEditAvatar, onEditProfile, onAddPlace}) {
 
           {cards.map(card =>
           <Card
-            name={card.name}
-            link={card.link}
-            likes={card.likes.length}
+            card={card}
+            onCardClick={onCardClick}
           />)}
 
         </section>
