@@ -1,5 +1,6 @@
 import React from 'react';
-import api from '../utils/api'
+import api from '../utils/api';
+import Card from './Card';
 import avatarEditIcon from '../images/edit-button_big.svg';
 
 function Main({onEditAvatar, onEditProfile, onAddPlace}) {
@@ -7,6 +8,7 @@ function Main({onEditAvatar, onEditProfile, onAddPlace}) {
   const [userName, setUserName] = React.useState('Имя');
   const [userDescription, setUserDescription] = React.useState('Описание');
   const [userAvatar, setUserAvatar] = React.useState('#');
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     Promise.all([
@@ -14,15 +16,14 @@ function Main({onEditAvatar, onEditProfile, onAddPlace}) {
       api.getInitialCards()
     ])
       .then((res) => {
-        console.log(res);
         const [userData, initialCards] = res;
-        // Загружаем на страницу данные пользователя
+        // Загружаем данные пользователя с сервера
         //userId = userData._id;
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
-        // Загружаем на страницу карточки
-        //cardsSection.renderItems(initialCards);
+        // Загружаем карточки с сервера
+        setCards(initialCards);
       })
       .catch((err) => {
         console.log(err);
@@ -49,21 +50,14 @@ function Main({onEditAvatar, onEditProfile, onAddPlace}) {
         </section>
 
         <section className="cards page__section" aria-label="Места">
-          <template className="card-template">
-            <figure className="card">
-              <button className="card__image-button">
-                <img src="#" alt="Фотография места" className="card__image"/>
-              </button>
-              <figcaption className="card__caption">
-                <p className="card__title"></p>
-                <div className="card__like-block">
-                  <button type="button" className="card__like-button" aria-label="Нравится"></button>
-                  <p className="card__likes-counter">0</p>
-              </div>
-              </figcaption>
-              <button type="button" className="card__trash-button" aria-label="Удалить"></button>
-            </figure>
-          </template>
+
+          {cards.map(card =>
+          <Card
+            name={card.name}
+            link={card.link}
+            likes={card.likes.length}
+          />)}
+
         </section>
       </main>
   );
