@@ -51,18 +51,19 @@ function App() {
       <PopupWithForm
         name="avatar-edit"
         title="Обновить аватар"
+        buttonText="Сохранить"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}>
           <label className="form__field">
           <input type="url" id="avatar-input" className="form__input form__input-url" name="url" placeholder="Ссылка на картинку с аватаром" required/>
             <span className="form__input-error avatar-input-error"></span>
           </label>
-         <button type="submit" className="form__submit-button">Сохранить</button>
       </PopupWithForm>
 
       <PopupWithForm
         name="profile-edit"
         title="Редактировать профиль"
+        buttonText="Сохранить"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}>
           <label className="form__field">
@@ -73,12 +74,12 @@ function App() {
             <input type="text" id="description-input" className="form__input" name="description" placeholder="О себе" minLength="2" maxLength="200" required/>
             <span className="form__input-error description-input-error"></span>
           </label>
-          <button type="submit" className="form__submit-button">Сохранить</button>
       </PopupWithForm>
 
       <PopupWithForm
         name="card-add"
         title="Новое место"
+        buttonText="Создать"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}>
           <label className="form__field">
@@ -89,21 +90,12 @@ function App() {
             <input type="url" id="url-input" className="form__input form__input-url" name="url" placeholder="Ссылка на картинку" required/>
             <span className="form__input-error url-input-error"></span>
          </label>
-         <button type="submit" className="form__submit-button">Создать</button>
       </PopupWithForm>
 
       <ImagePopup
         card={selectedCard}
         onClose={closeAllPopups}
       />
-
-      <section className="popup popup_type_confirm-delete">
-        <form className="form" name="confirm" noValidate>
-          <button type="button" className="popup__close-button" aria-label="Закрыть попап"></button>
-          <h2 className="form__title">Вы уверены?</h2>
-          <button type="submit" className="form__submit-button">Да</button>
-        </form>
-      </section>
 
     </div>
   );

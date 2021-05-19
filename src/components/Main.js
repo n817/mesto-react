@@ -51,11 +51,13 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
 
         <section className="cards page__section" aria-label="Места">
 
-          {cards.map(card =>
-          <Card
-            card={card}
-            onCardClick={onCardClick}
-          />)}
+          {cards.map((card) => (
+            <Card
+              card={card}
+              key={card._id}
+              onCardClick={onCardClick}/>
+            )
+          )}
 
         </section>
       </main>
