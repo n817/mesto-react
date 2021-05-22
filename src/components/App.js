@@ -2,8 +2,8 @@ import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
-
 import Footer from './Footer';
+import api from '../utils/api'
 import '../index.css';
 import ImagePopup from './ImagePopup';
 
@@ -14,7 +14,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
-
+  const [currentUser, setCurrentUser] = React.useState({});
 
   function handleEditAvatarClick(){
     setIsEditAvatarPopupOpen(true);
@@ -40,13 +40,31 @@ function App() {
   }
 
   React.useEffect(() => {
+    api.getUserInfo()
+    .then((res) => {
+      setCurrentUser(res);
+      })
+    .catch((err) => {
+       console.log(err);
+      });
+
+  }, []);
+
+  console.log(currentUser);
+
+
+  // Реализуем закрытие popup кнопкой Esc
+  React.useEffect(() => {
+
     function handleEscClose(evt) {
       if (evt.key ==='Escape') {
         closeAllPopups();
       }
     }
+    // Список действий внутри одного хука
     document.addEventListener('keyup', handleEscClose);
 
+    // Возвращаем функцию, которая удаляет эффекты
     return () => {
       document.removeEventListener('keyup', handleEscClose);
     }
