@@ -63,7 +63,7 @@ class Api {
   }
 
   // Лайк и удаление лайка карточки
-  toggleCardLike({methodName, cardId}) {
+  changeLikeCardStatus({methodName, cardId}) {
     return fetch(`${this._cardsUrl}/likes/${cardId}`, {
       method: methodName,
       headers: this._headers
