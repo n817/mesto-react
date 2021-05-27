@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.ff8b8eba.chunk.css",
-    "main.js": "/static/js/main.882ca09a.chunk.js",
-    "main.js.map": "/static/js/main.882ca09a.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.877f026c.js",
-    "runtime-main.js.map": "/static/js/runtime-main.877f026c.js.map",
-    "static/js/2.c4fb20ad.chunk.js": "/static/js/2.c4fb20ad.chunk.js",
-    "static/js/2.c4fb20ad.chunk.js.map": "/static/js/2.c4fb20ad.chunk.js.map",
-    "static/js/3.b59b163b.chunk.js": "/static/js/3.b59b163b.chunk.js",
-    "static/js/3.b59b163b.chunk.js.map": "/static/js/3.b59b163b.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.ff8b8eba.chunk.css.map": "/static/css/main.ff8b8eba.chunk.css.map",
-    "static/js/2.c4fb20ad.chunk.js.LICENSE.txt": "/static/js/2.c4fb20ad.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/static/media/trash-button.cbc09a89.svg",
-    "static/media/edit-button_big.a086f758.svg": "/static/media/edit-button_big.a086f758.svg",
-    "static/media/logo.03b78ada.svg": "/static/media/logo.03b78ada.svg"
+    "main.css": "/mesto-react/static/css/main.53b3567f.chunk.css",
+    "main.js": "/mesto-react/static/js/main.882ca09a.chunk.js",
+    "main.js.map": "/mesto-react/static/js/main.882ca09a.chunk.js.map",
+    "runtime-main.js": "/mesto-react/static/js/runtime-main.6e804900.js",
+    "runtime-main.js.map": "/mesto-react/static/js/runtime-main.6e804900.js.map",
+    "static/js/2.c4fb20ad.chunk.js": "/mesto-react/static/js/2.c4fb20ad.chunk.js",
+    "static/js/2.c4fb20ad.chunk.js.map": "/mesto-react/static/js/2.c4fb20ad.chunk.js.map",
+    "static/js/3.b59b163b.chunk.js": "/mesto-react/static/js/3.b59b163b.chunk.js",
+    "static/js/3.b59b163b.chunk.js.map": "/mesto-react/static/js/3.b59b163b.chunk.js.map",
+    "index.html": "/mesto-react/index.html",
+    "static/css/main.53b3567f.chunk.css.map": "/mesto-react/static/css/main.53b3567f.chunk.css.map",
+    "static/js/2.c4fb20ad.chunk.js.LICENSE.txt": "/mesto-react/static/js/2.c4fb20ad.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/mesto-react/static/media/trash-button.cbc09a89.svg",
+    "static/media/edit-button_big.a086f758.svg": "/mesto-react/static/media/edit-button_big.a086f758.svg",
+    "static/media/logo.03b78ada.svg": "/mesto-react/static/media/logo.03b78ada.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.877f026c.js",
+    "static/js/runtime-main.6e804900.js",
     "static/js/2.c4fb20ad.chunk.js",
-    "static/css/main.ff8b8eba.chunk.css",
+    "static/css/main.53b3567f.chunk.css",
     "static/js/main.882ca09a.chunk.js"
   ]
 }
