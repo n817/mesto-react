@@ -30,12 +30,12 @@ class Api {
   }
 
   // Загрузка аватара пользователя на сервер
-  patchUserAvatar(formData) {
+  setUserAvatar(newAvatarUrl) {
     return fetch(`${this._userUrl}/avatar`, {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
-      avatar: formData.url,
+      avatar: newAvatarUrl,
       })
     })
     .then(this._checkResponse)

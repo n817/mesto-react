@@ -4,6 +4,7 @@ import Header from './Header';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import Footer from './Footer';
 import api from '../utils/api'
 import '../index.css';
@@ -67,6 +68,19 @@ function App() {
     })
   }
 
+  function handleUpdateAvatar(newAvatarUrl) {
+    api.setUserAvatar(newAvatarUrl)
+    .then((res) => {
+      setCurrentUser(res);
+      })
+    .catch((err) => {
+       console.log(err);
+      })
+    .finally(() => {
+      closeAllPopups();
+    })
+  }
+
 
   // Реализуем закрытие popup кнопкой Esc
   React.useEffect(() => {
@@ -96,17 +110,7 @@ function App() {
               onCardClick = {handleCardClick}/>
         <Footer />
 
-        <PopupWithForm
-          name="avatar-edit"
-          title="Обновить аватар"
-          buttonText="Сохранить"
-          isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}>
-            <label className="form__field">
-            <input type="url" id="avatar-input" className="form__input form__input-url" name="url" placeholder="Ссылка на картинку с аватаром" required/>
-             <span className="form__input-error avatar-input-error"></span>
-            </label>
-        </PopupWithForm>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 
