@@ -3,6 +3,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import Header from './Header';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
+import EditProfilePopup from './EditProfilePopup';
 import Footer from './Footer';
 import api from '../utils/api'
 import '../index.css';
@@ -93,21 +94,7 @@ function App() {
             </label>
         </PopupWithForm>
 
-        <PopupWithForm
-          name="profile-edit"
-          title="Редактировать профиль"
-          buttonText="Сохранить"
-          isOpen={isEditProfilePopupOpen}
-          onClose={closeAllPopups}>
-            <label className="form__field">
-              <input type="text" id="username-input" className="form__input" name="username" placeholder="Имя" minLength="2" maxLength="40" required/>
-              <span className="form__input-error username-input-error"></span>
-            </label>
-            <label className="form__field">
-             <input type="text" id="description-input" className="form__input" name="description" placeholder="О себе" minLength="2" maxLength="200" required/>
-              <span className="form__input-error description-input-error"></span>
-            </label>
-        </PopupWithForm>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
 
         <PopupWithForm
           name="card-add"
