@@ -17,13 +17,13 @@ class Api {
   }
 
   // Загрузка новой информации о пользователе на сервер
-  patchUserInfo(formData) {
+  setUserInfo({name, about}) {
     return fetch(this._userUrl, {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
-      name: formData.username,
-      about: formData.description
+      name: name,
+      about: about
       })
     })
     .then(this._checkResponse)

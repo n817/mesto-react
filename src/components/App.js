@@ -54,6 +54,20 @@ function App() {
   }, []);
 
 
+  function handleUpdateUser({name, about}) {
+    api.setUserInfo({name, about})
+    .then((res) => {
+      setCurrentUser(res);
+      })
+    .catch((err) => {
+       console.log(err);
+      })
+    .finally(() => {
+      closeAllPopups();
+    })
+  }
+
+
   // Реализуем закрытие popup кнопкой Esc
   React.useEffect(() => {
 
@@ -94,7 +108,7 @@ function App() {
             </label>
         </PopupWithForm>
 
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 
         <PopupWithForm
           name="card-add"
