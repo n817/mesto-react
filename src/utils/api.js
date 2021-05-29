@@ -42,7 +42,7 @@ class Api {
   }
 
   // Получение массива карточек с сервера
-  getInitialCards() {
+  getCardList() {
     return fetch(this._cardsUrl, {
       headers: this._headers
     })
@@ -50,13 +50,13 @@ class Api {
   }
 
   // Загрузка новой карточки на сервер
-  postNewCard(formData) {
+  postNewCard({newCardName, newCardUrl}) {
     return fetch(this._cardsUrl, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: formData.cardname,
-        link: formData.url
+        name: newCardName,
+        link: newCardUrl
         })
     })
     .then(this._checkResponse)

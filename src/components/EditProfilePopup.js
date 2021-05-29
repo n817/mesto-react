@@ -14,12 +14,12 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   }, [currentUser]);
 
 
-  function handleNameChange(event) {
-    setName(event.target.value);
+  function handleNameChange(e) {
+    setName(e.target.value);
   }
 
-  function handleDescriptionChange(event) {
-    setDescription(event.target.value);
+  function handleDescriptionChange(e) {
+    setDescription(e.target.value);
   }
 
   function handleSubmit(e) {
@@ -45,7 +45,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
       <label className="form__field">
         <input
           type="text"
-          value={name}
+          value={name || ''}
           onChange={handleNameChange}
           className="form__input"
           placeholder="Имя"
@@ -56,7 +56,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
       <label className="form__field">
         <input
           type="text"
-          value={description}
+          value={description || ''}
           onChange={handleDescriptionChange}
           className="form__input"
           placeholder="О себе"

@@ -1,51 +1,11 @@
 import React from 'react';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
-import api from '../utils/api';
 import Card from './Card';
 import avatarEditIcon from '../images/edit-button_big.svg';
 
-function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
+function Main({onEditAvatar, onEditProfile, onAddPlace, cards, onCardClick, onCardLike, onCardDelete}) {
 
   const currentUser = React.useContext(CurrentUserContext);
-  const [cards, setCards] = React.useState([]);
-
-  // Загружаем карточки с сервера
-  React.useEffect(() => {
-      api.getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    }, []);
-
-
-  // Обработка лайков
-  function handleCardLike(card) {
-	  // Проверяем, есть ли уже лайк на этой карточке
-	  const isLiked = card.likes.some(i => i._id === currentUser._id);
-	  // Отправляем запрос в API и получаем обновлённые данные карточки
-	  api.changeLikeCardStatus({
-      methodName: `${isLiked ? 'DELETE' : 'PUT'}`,
-      cardId: card._id})
-    .then((newCard) => {
-		  // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
-	    const newCards = cards.map((i) => i._id === card._id ? newCard : i);
-	    // Обновляем стейт
-	    setCards(newCards);
-	  });
-  }
-
-  // Удаление карточки
-  function handleCardDelete(card) {
-    api.deleteCard(card._id)
-    .then((newCard) => {
-      const newCards = cards.filter((i) => i._id !== card._id);
-      setCards(newCards);
-    });
-  }
 
   return (
     <main id="content">
@@ -71,8 +31,8 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
               key={card._id}
               card={card}
               onCardClick={onCardClick}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
             />
             )
           )}
