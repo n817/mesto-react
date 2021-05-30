@@ -63,9 +63,9 @@ class Api {
   }
 
   // Лайк и удаление лайка карточки
-  changeLikeCardStatus({methodName, cardId}) {
+  changeLikeCardStatus({isLiked, cardId}) {
     return fetch(`${this._cardsUrl}/likes/${cardId}`, {
-      method: methodName,
+      method: `${isLiked ? 'DELETE' : 'PUT'}`,
       headers: this._headers
     })
     .then(this._checkResponse)

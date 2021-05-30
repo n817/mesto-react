@@ -72,39 +72,33 @@ function App() {
     api.setUserInfo({name, about})
     .then((res) => {
       setCurrentUser(res);
+      closeAllPopups();
       })
     .catch((err) => {
        console.log(err);
       })
-    .finally(() => {
-      closeAllPopups();
-    })
   }
 
   function handleUpdateAvatar(newAvatarUrl) {
     api.setUserAvatar(newAvatarUrl)
     .then((res) => {
       setCurrentUser(res);
+      closeAllPopups();
       })
     .catch((err) => {
        console.log(err);
       })
-    .finally(() => {
-      closeAllPopups();
-    })
   }
 
   function handleAddPlaceSubmit({newCardName, newCardUrl}) {
     api.postNewCard({newCardName, newCardUrl})
     .then((newCard) => {
-      setCards([newCard, ...cards]); ;
+      setCards([newCard, ...cards]);
+      closeAllPopups();
       })
     .catch((err) => {
        console.log(err);
       })
-    .finally(() => {
-      closeAllPopups();
-    })
   }
 
   // Обработка лайков
@@ -112,9 +106,7 @@ function App() {
 	  // Проверяем, есть ли уже лайк на этой карточке
 	  const isLiked = card.likes.some(i => i._id === currentUser._id);
 	  // Отправляем запрос в API и получаем обновлённые данные карточки
-	  api.changeLikeCardStatus({
-      methodName: `${isLiked ? 'DELETE' : 'PUT'}`,
-      cardId: card._id})
+	  api.changeLikeCardStatus({isLiked, cardId: card._id})
     .then((newCard) => {
 		  // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
 	    const newCards = cards.map((i) => i._id === card._id ? newCard : i);
@@ -125,11 +117,8 @@ function App() {
 
   // Удаление карточки
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
-    .then((newCard) => {
-      const newCards = cards.filter((i) => i._id !== card._id);
-      setCards(newCards);
-    });
+    api.deleteCard(card._id);
+    setCards(cards.filter((i) => i !== card));
   }
 
 
