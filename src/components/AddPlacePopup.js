@@ -30,6 +30,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
       <label className="form__field">
         <input
           type="text"
+          value={newCardName}
           onChange={handleCardNameAdd}
           id="title-input"
           className="form__input"
@@ -44,6 +45,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
       <label className="form__field">
         <input
           type="url"
+          value={newCardUrl}
           onChange={handleCardUrlAdd}
           id="url-input"
           className="form__input form__input-url"
